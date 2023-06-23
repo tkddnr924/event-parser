@@ -21,7 +21,7 @@ type EventHeader struct {
 	checkSum          uint32
 }
 
-func createEventHeader(header_byte []byte) EventHeader {
+func parseEventHeader(header_byte []byte) EventHeader {
 	_header := EventHeader{}
 
 	// Magic (8 bytes)

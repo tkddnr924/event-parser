@@ -21,6 +21,6 @@ func Open(filePath string) {
 	}
 	defer _file.Close()
 
-	_header := createEventHeader(header_byte)
+	_header := parseEventHeader(header_byte)
 	fmt.Printf("%+v\n", _header)
 }
