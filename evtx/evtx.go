@@ -22,5 +22,13 @@ func Open(filePath string) {
 	defer _file.Close()
 
 	_header := parseEventHeader(header_byte)
+
+	_, err = _file.Seek(int64(_header.headerSize), 0)
+
+	if err != nil {
+		fmt.Print("Error: fail seek file")
+	}
+	defer _file.Close()
+
 	fmt.Printf("%+v\n", _header)
 }
