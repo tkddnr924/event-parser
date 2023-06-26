@@ -8,6 +8,8 @@
 *.so
 *.dylib
 
+.idea/*
+
 *.evtx
 
 # Test binary, built with `go test -c`

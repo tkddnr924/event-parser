@@ -2,6 +2,8 @@ package evtx
 
 import "encoding/binary"
 
+const EventChunkByte = 0x80
+
 type EventChunk struct {
 	Magic               string
 	FirstRecordNum      int64
@@ -16,7 +18,7 @@ type EventChunk struct {
 	HeaderCRC           uint32
 }
 
-func ParseEventChunk(data []byte) {
+func ParseEventChunk(data []byte) EventChunk {
 	_chunk := EventChunk{}
 
 	// Magic
@@ -24,9 +26,11 @@ func ParseEventChunk(data []byte) {
 
 	// first record num
 	FirstRecordNum := convertBuffer(data[8:16])
-	binary.Read(FirstRecordNum, binary.LittleEndian, &_chunk.FirstRecordNum)
+	_ = binary.Read(FirstRecordNum, binary.LittleEndian, &_chunk.FirstRecordNum)
 
 	// last record num
 	LastRecordNum := convertBuffer(data[16:32])
-	binary.Read(LastRecordNum, binary.LittleEndian, &_chunk.LastRecordNum)
+	_ = binary.Read(LastRecordNum, binary.LittleEndian, &_chunk.LastRecordNum)
+
+	return _chunk
 }
