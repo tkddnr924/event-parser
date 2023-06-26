@@ -2,7 +2,8 @@ package evtx
 
 import "encoding/binary"
 
-const EventChunkByte = 0x200
+const EventChunkByte = 0x80
+const EventChunkSize = 0x200
 
 type EventChunk struct {
 	Magic               string

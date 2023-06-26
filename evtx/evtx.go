@@ -52,6 +52,9 @@ func Open(filePath string) {
 
 	_chunk := ParseEventChunk(chunkByte)
 
+	// Parse Event Record
+	_, err = _file.Seek(int64(EventChunkSize-EventChunkByte), 0)
+
 	fmt.Printf("%+v\n", _header)
 	fmt.Printf("%+v\n", _chunk)
 }
